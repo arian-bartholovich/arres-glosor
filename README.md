@@ -1,70 +1,80 @@
-# KFSCI23B Website
+# Arres Glosor
 
-A full-stack community portal built for the **KFSCI23B Chemistry and Physics programme** at Europaskolan Strängnäs. The application brings class information, school news, fundraising links, and student interaction into one accessible web experience.
+**Arres Glosor** is a full-stack vocabulary-learning platform that lets users create, organize, and practise their own language exercises. Built with Django, it combines an intuitive study workflow with account-based ownership, persistent data, and dynamic JSON-powered updates.
 
 ## Overview
 
-This project demonstrates the ability to turn a real user community's needs into a structured web application. It combines a polished, content-driven front end with server-side routing, authentication, database persistence, and real-time communication.
+The project was designed around a clear learner need: make vocabulary practice more flexible than a fixed word list. Users can build exercises for any two languages, manage translations, review a complete exercise, and switch the study direction as they practise.
 
 ## Features
 
-- **Class and school hub** — presents programme information, school context, and class-focused content.
-- **News experience** — provides dedicated pages for class events, including a futsal tournament, a Greece trip, and a sausage-eating competition.
-- **User authentication** — supports registration, login, logout, session management, validation, and hashed passwords.
-- **Real-time chat** — enables authenticated users to exchange messages through Socket.IO, with messages persisted in SQLite.
-- **Protected content** — includes a controlled route for school documents.
-- **Responsive visual interface** — uses reusable templates, static assets, Bootstrap components, and an image carousel to create an engaging user experience.
-- **Fundraising integration** — links visitors to the class's NewBody fundraising campaign.
+- **Custom vocabulary exercises** — create named exercises for any language pair.
+- **Translation management** — add and remove vocabulary pairs within an exercise.
+- **Bidirectional practice** — switch the active language direction while studying.
+- **Personal learning library** — browse exercises ordered by latest update and view creator profiles.
+- **User authentication** — register, log in, and log out using Django’s authentication framework.
+- **Ownership controls** — exercise editing is limited to the user who created it.
+- **Persistent data model** — stores exercise details, timestamps, creators, and translation pairs in SQLite.
+- **Dynamic interface** — uses JSON requests and responses for responsive create, save, and delete actions.
 
 ## Technical Highlights
 
 | Area | Implementation |
 | --- | --- |
-| Backend | Python and Flask |
-| Data | SQLite with CS50 SQL helpers |
-| Authentication | Flask sessions and Werkzeug password hashing |
-| Real-time communication | Flask-SocketIO |
-| Front end | HTML, CSS, Jinja templates, Bootstrap |
-| Application structure | Route-based Flask application with reusable layouts and static assets |
+| Framework | Django 5 |
+| Language | Python |
+| Database | SQLite with Django ORM |
+| Authentication | Custom Django user model and built-in authentication tools |
+| Data design | Relational `Exercise` model with JSON-based translation storage |
+| Front end | Django templates, HTML, CSS, and JavaScript |
+| Deployment support | Gunicorn, WhiteNoise, and Vercel configuration |
 
 ## What This Project Demonstrates
 
-- Full-stack web development with Python and Flask
-- Designing a usable product around a specific community
-- Authentication and session-based access flows
-- Relational data persistence and database queries
-- Event-driven, real-time functionality with WebSockets
-- Clear page architecture using reusable server-rendered templates
-- Thoughtful visual presentation for a public-facing site
+- Building a user-centered learning product from concept to implementation
+- Designing server-side routes and reusable Django templates
+- Implementing registration, login, logout, and access-aware editing flows
+- Modeling relational data with Django ORM and foreign-key ownership
+- Building JSON endpoints to support responsive client-side interactions
+- Handling validation, error states, and missing resources
+- Designing a flexible data model that supports many language combinations
 
 ## Project Structure
 
 ```text
-KFSCI23B-website/
-├── app.py             # Flask routes, authentication, database, and Socket.IO events
-├── functions.py       # Access-control decorators
-├── information.db     # SQLite application data
-├── static/            # Stylesheets, images, and client-side assets
-└── templates/         # Reusable layouts and page templates
+arres-glosor/
+├── arres_glosor/       # Django app: models, routes, views, templates, and static assets
+├── final_project/      # Django project settings and deployment entry points
+├── db.sqlite3          # Local SQLite database
+├── manage.py           # Django command-line entry point
+├── requirements.txt    # Python dependencies
+└── vercel.json         # Deployment configuration
 ```
 
 ## Getting Started
 
-1. Clone the repository.
-2. Create and activate a Python virtual environment.
-3. Install the project dependencies:
+1. Clone the repository and enter the project folder.
+2. Create and activate a virtual environment.
+3. Install the dependencies:
 
    ```bash
-   pip install Flask Flask-Session Flask-SocketIO Flask-SQLAlchemy cs50
+   pip install -r requirements.txt
    ```
 
-4. Set a `SECRET_KEY` environment variable for your local environment.
-5. Start the application:
+4. Apply database migrations:
 
    ```bash
-   python app.py
+   python manage.py migrate
    ```
+
+5. Start the development server:
+
+   ```bash
+   python manage.py runserver
+   ```
+
+6. Open `http://127.0.0.1:8000` in your browser.
 
 ## Author
 
-Developed by **Arian Bartholovich** as a practical full-stack web project for KFSCI23B at Europaskolan Strängnäs.
+Developed by **Arian Bartholovich** as a full-stack Django application that pairs thoughtful learning design with robust web development fundamentals.
